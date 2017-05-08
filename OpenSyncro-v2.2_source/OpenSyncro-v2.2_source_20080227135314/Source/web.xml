@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app 
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" 
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <!-- General description of your web application -->
+
+    <display-name>Smilehouse OpenSyncro</display-name>
+
+    <!-- Servlet definitions for the servlets that make up
+         your web application, including initialization
+         parameters.  With Tomcat, you can also send requests
+         to servlets not listed here with a request like this:
+
+           http://localhost:8080/{context-path}/servlet/{classname}
+
+         but this usage is not guaranteed to be portable.  It also
+         makes relative references to images and other resources
+         required by your servlet more complicated, so defining
+         all of your servlets (and defining a mapping to them with
+         a servlet-mapping element) is recommended.
+
+         Servlet initialization parameters can be retrieved in a
+         servlet or JSP page by calling:
+
+             String value =
+               getServletConfig().getInitParameter("name");
+
+         where "name" matches the <param-name> element of
+         one of these initialization parameters.
+
+         You can define any number of servlets, including zero.
+    -->
+
+    <servlet>
+      <servlet-name>Login</servlet-name>
+      <description>Standalone OpenSyncro Login</description>
+      <servlet-class>smilehouse.opensyncro.servlets.standalone.Login</servlet-class>
+    </servlet> 
+  
+    <servlet>
+      <servlet-name>Index</servlet-name>
+      <description>Standalone OpenSyncro Index</description>
+      <servlet-class>smilehouse.opensyncro.servlets.standalone.Index</servlet-class>
+    </servlet>
+
+    <servlet>
+      <servlet-name>Nav</servlet-name>
+      <description>Standalone OpenSyncro Navigation Bar</description>
+      <servlet-class>smilehouse.opensyncro.servlets.standalone.Nav</servlet-class>
+    </servlet> 
+
+    <servlet>
+      <servlet-name>Users</servlet-name>
+      <description>Standalone OpenSyncro User Management</description>
+      <servlet-class>smilehouse.opensyncro.servlets.standalone.Users</servlet-class>
+    </servlet> 
+  
+    <servlet>
+      <servlet-name>SyncroPipeList</servlet-name>
+      <description>Pipe List</description>
+      <servlet-class>smilehouse.opensyncro.servlets.SyncroPipeList</servlet-class>
+    </servlet> 
+
+    <servlet>
+      <servlet-name>SyncroEditPipe</servlet-name>
+      <description>Pipe Editor</description>
+      <servlet-class>smilehouse.opensyncro.servlets.SyncroEditPipe</servlet-class>
+    </servlet>
+	
+	<servlet>
+      <servlet-name>SyncroPipeSettings</servlet-name>
+      <description>Pipe Settings</description>
+      <servlet-class>smilehouse.opensyncro.servlets.SyncroPipeSettings</servlet-class>
+    </servlet>
+    
+    <servlet>
+      <servlet-name>SyncroEditComponent</servlet-name>
+      <description>Pipe Component Editor</description>
+      <servlet-class>smilehouse.opensyncro.servlets.SyncroEditComponent</servlet-class>
+    </servlet>
+
+    <servlet>
+      <servlet-name>SyncroTransferLog</servlet-name>
+      <description>Transfer Log</description>
+      <servlet-class>smilehouse.opensyncro.servlets.SyncroTransferLog</servlet-class>
+    </servlet>
+    <servlet>
+      <servlet-name>SyncroPipeExecutionQueue</servlet-name>
+      <description>Pipe execution queue</description>
+      <servlet-class>smilehouse.opensyncro.servlets.SyncroPipeExecutionQueue</servlet-class>
+    </servlet>
+
+    <servlet>
+      <servlet-name>SyncroComponents</servlet-name>
+      <description>Installed Components</description>
+      <servlet-class>smilehouse.opensyncro.servlets.SyncroComponents</servlet-class>
+    </servlet>
+
+    <servlet>
+      <servlet-name>SyncroStartup</servlet-name>
+      <description>Loaded on startup for application initialization</description>
+      <servlet-class>smilehouse.opensyncro.servlets.SyncroStartup</servlet-class>
+      <load-on-startup>10</load-on-startup>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>SyncroHttpStart</servlet-name>
+        <description>Remote start of a pipe execution</description>
+        <servlet-class>smilehouse.opensyncro.servlets.SyncroHttpStart</servlet-class>
+    </servlet>
+
+    <!-- Define mappings that are used by the servlet container to
+         translate a particular request URI (context-relative) to a
+         particular servlet.  The examples below correspond to the
+         servlet descriptions above.  Thus, a request URI like:
+
+           http://localhost:8080/{contextpath}/graph
+
+         will be mapped to the "graph" servlet, while a request like:
+
+           http://localhost:8080/{contextpath}/saveCustomer.do
+
+         will be mapped to the "controller" servlet.
+
+         You may define any number of servlet mappings, including zero.
+         It is also legal to define more than one mapping for the same
+         servlet, if you wish to.
+    -->
+ 
+    <servlet-mapping>
+      <servlet-name>Login</servlet-name>
+      <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>Index</servlet-name>
+      <url-pattern>/Index</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>Nav</servlet-name>
+      <url-pattern>/Nav</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>Users</servlet-name>
+      <url-pattern>/Users</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>SyncroPipeList</servlet-name>
+      <url-pattern>/PipeList</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>SyncroEditPipe</servlet-name>
+      <url-pattern>/EditPipe</url-pattern>
+    </servlet-mapping>
+
+	<servlet-mapping>
+      <servlet-name>SyncroPipeSettings</servlet-name>
+      <url-pattern>/PipeSettings</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>SyncroEditComponent</servlet-name>
+      <url-pattern>/EditComponent</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>SyncroTransferLog</servlet-name>
+      <url-pattern>/TransferLog</url-pattern>
+    </servlet-mapping>
+ 
+    <servlet-mapping>
+      <servlet-name>SyncroPipeExecutionQueue</servlet-name>
+      <url-pattern>/PipeExecutionQueue</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>SyncroComponents</servlet-name>
+      <url-pattern>/Components</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>SyncroStartup</servlet-name>
+      <url-pattern>/Startup</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SyncroHttpStart</servlet-name>
+        <url-pattern>/HttpStart</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+      <!-- 30 minutes until the session expires -->
+      <session-timeout>30</session-timeout>
+    </session-config>
+
+</web-app>

@@ -1,0 +1,850 @@
+-------------------------------------------------------------------
+27.02.2008 OpenSyncro v2.2 build for public release
+           Build number: 20080227135314
+           Binary distribution archive: OpenSyncro-v2.2_install.zip
+           Source distribution archive: OpenSyncro-v2.2_source.zip
+-------------------------------------------------------------------
+
+26.02.2008
+- Improved validation of login name when adding a new user. A user's login
+  name may now contain any Unicode letter category character.
+
+25.02.2008
+- Fixed: RemoteCustomerSource component was missing Finnish description and
+  editor GUI labels. Corrected "User ID" label to "Customer ID" and updated
+  the component's documentation.  
+
+20.02.2008
+- Updated 3rd party JAR component: Saxon-B 9.0.0.2
+
+18.02.2008
+- Bugfix: Reloading a list view immediately adding a new item caused null
+  values to be overwritten to the new item. For example in Users management
+  after adding a new user, refreshing the frame would cause the new user's
+  name to be changed to 'null'.
+
+13.02.2008
+- Documentation update in Component Reference guide:
+	- updated HQL example queries for WorkspaceHQLSource and
+	  WorkspaceHQLOrderSource components to reflect changes in Workspace
+	  1.10's Hibernate version and data mapping.
+	- changed the date arithmetic in HQL example queries to explicitly call
+	  MySQL timestamp functions instead of using a shortcut syntax.
+    - added HQL example queries to WorkspaceHQLSource for exporting customer
+      records from Workspace webshop.
+
+29.01.2008
+- Bugfix: JDBCSource and JDBCConverter were double escaping XML reserved
+  characters. The components' XML output was for example "&amp;lt;" instead
+  of "&lt;".
+
+03.01.2008
+- Improved WorkspaceHQLResultConverter: HQL object's property name can now 
+  contain references to Hibernate object's collection type properties and
+  their properties. This allows for example retrieving webshop product data
+  by item codes or stock amounts of the product's option choices.
+
+28.12.2007
+- Bugfix: After execution of a remotely invoked Pipe, in certain situations a
+  ConcurrentModificationException was thrown in PipeExecutionThread's cleanup
+  code.
+
+20.11.2007
+- Added two fields to LocalFileDestination, the component can now add strings
+  to the start and end of the file.
+
+15.10.2007
+- Added JDBCSource: a component that makes a SQL Select-query to a database and
+  returns the result as XML blocks.
+
+10.10.2007
+- Bugfix: The top frame menubar is no longer duplicated when user logs in again
+  after a timed out session.
+
+02.10.2007
+- Bugfixes for WorkspaceHQLResultConverter: unique value filtering from XPath
+  query results was broken and a few special characters were not properly
+  escaped in the generated HQL query.
+- Bugfix for LocalFileWriteConverter not actually overwriting the file on each iteration.
+
+29.08.2007
+- Added backwards compatibility check to LocalFileWrite converter component.
+
+17.08.2007
+- Added Content-Type parameter to HTTPConverter and HTTPDestination components.
+   
+26.06.2007
+- Added logging of import warnings to RemoteCustomerDestination.
+
+25.06.2007
+- Added always overwrite feature to LocalFileWriteConverter.
+
+15.06.2007
+- Updated SAAJ libraries (saaj-api.jar and saaj-impl.jar) to latest version (1.3). 
+  Fixes incompatibility problem with Java 1.6.
+
+07.06.2007
+- Bugfix: deleting a Pipe did not work if it had Transfer logs.
+
+01.06.2007
+- Fixed LocalFileReadConverter: now usable also in iterating Pipes,
+  previously returned null value after the first iteration.
+- Bugfix: cloning a Pipe did not properly copy Transfer log notification
+  level setting
+- New converter component RemoteOrderConverter for inserting and updating
+  sales orders in Workspace webshop, in the middle of a Pipe. Provides
+  the same functionality as RemoteOrderDestination component.
+
+24.05.2007
+- Added the possibility to choose the charset used for reading the HTTP 
+  response in HTTPSource.
+
+18.04.2007
+- Added new RemoteCustomerSource selection criteria. These criteria require
+  Workspace version 1.8.2. Added customer modified after / before and
+  admin modified after / before selection.
+
+12.04.2007
+- Corrected misleading parameter label for WorkspaceHQLResultConverter and
+  updated the Component Reference guide accordingly.
+
+26.03.2007
+- HTTPConverter and HTTPDestination components now include the possibility
+  to choose the charset used to read the response.
+
+-------------------------------------------------------------------
+20.02.2007 OpenSyncro v2.1 build for public release
+           Build number: 20070220135311
+           Binary distribution archive: OpenSyncro-v2.1_install.zip
+           Source distribution archive: OpenSyncro-v2.1_source.zip
+-------------------------------------------------------------------
+
+19.02.2007
+- Updated 3rd party JAR component: Saxon-B 8.9
+- Improved XSLT20Converter: Transfer log messages output using xsl:message
+  with attribute terminate="yes" are now written as error messages (instead
+  of debug/info level messages).
+
+16.02.2007
+- Bugfixes for HTTPSource, HTTPConverter and HTTPDestination components:
+	- a directory path without the leading slash character resulted in
+      misleading error messages
+    - if the HTTP response body is empty (null), HTTPSource and
+      HTTPConverter now abort the Pipe execution without error. For
+      compatibility reasons, HTTPDestination still ignores such
+      responses as the Destination components don't return data to
+      the Pipe framework anyway.
+
+15.02.2007
+- Moved MySQL 4.0 to 5.0 database upgrade statements to a separate file
+  opensyncro_mysql4_to_mysql5.sql
+
+13.02.2007
+- Feature removed: RemoteOrderSource component no longer provides
+  "Fetch only the updated orders" option as that selection criterion
+  is not anymore supported by the Workspace webshop (v1.8.1+).
+- Updated HTTPConverter and HTTPDestination: added an option to
+  ignore HTTP error responses and pass the response body to the
+  next Pipe component.
+
+11.02.2007
+- Login to non-existent database now writes a message "Error: Attempt
+  to log in to an unknown database 'databasename'" without full
+  stacktrace into logfile.
+
+09.02.2007
+- Modified database initialization dump files and upgrade dump file 
+  opensyncro_v2_0_to_v2_1.sql: Charset of all tables is set to utf8.
+
+05.02.2007
+- Bugfix: WorkspaceHQLResultConverter did not always properly close
+  the HQL export iterator session
+
+01.02.2007
+- Updated HTTPConverter: added charset selection for SOAP requests
+
+31.01.2007
+- Bugfix: Deleting a Converter from Pipe caused a JDBCException on
+  MySQL 5.0 running in strict mode.
+
+26.01.2007
+- Fixed pull-down menu in the navigation bar: relocated smilemenu.js
+  to dynapi/src/lib in the build process to ensure its accessibility
+  when OpenSyncro webapp is not installed directly under the root
+  context or a different name than the default 'opensyncro' is used.
+- Fixed Transfer log view: sign of continued log entry ("...") is no
+  longer displayed at the beginning of log entries written by a Pipe
+  using dynamic logging mode.
+- Updated 3rd party JAR component: Saxon-B 8.8
+
+25.01.2007
+- Made logout button text localizable
+- Changed a new Pipe's default Transfer log verbosity level to Dynamic
+
+17.01.2007
+- MySQL 5.x support added:
+	- Updated database initialization dump files and added a new database
+	  upgrade dump file opensyncro_v2_0_to_v2_1.sql
+    - Updated documentation to reflect OpenSyncro's compatibility with
+      MySQL 5.x
+
+16.01.2007
+- Now email notifying about Pipe execution has database name in its subject. 
+
+11.12.2006
+- Added HTTPConverter entry to Component Reference guide. 
+
+05.12.2006
+- RemoteCustomerSource component is now completely functional.
+- Added RemoteCustomerSource entry to Component Reference guide. 
+
+27.11.2006
+- Added new source component RemoteCustomerSource to export customer data from Workspace.
+  Currently supports only four criteria fields ('User ID', 'id greater than',
+  'id less than' and 'id in').
+  		
+22.11.2006
+- Added PipeWrapper class to enable using several databases simultaneously
+  (by adding database name to Pipe).
+- Modified SyncroHttpStart, PipeExecutionThread and SyncroStartup to get more smooth
+  simultaneous execution of pipes from different databases.
+- Map pipesAndThreads in SyncroHttpStart and SyncroStartup is now created as a synchronized
+  one to prevent accidental unsynchronized access to it.
+    
+21.11.2006
+- Added a new component HTTPConverter for sending HTTP and SOAP queries in the
+  middle of a Pipe and receiving the server's response for further processing.
+
+01.11.2006
+- "--" log message entry is written to database only when there are no other
+  messages for that log entry. 
+
+25.10.2006
+- Bugfix: Now abort and error colors interchange properly
+- If Transfer log page starts or ends with a divided(between pages) log entry,
+  "..." is added to the beginning or the end of the page.
+
+20.10.2006
+- Transfer log now presents 100 log message entries per page
+  (before it presented 10 log entries instead) and log entries can be divided
+  between pages.
+
+13.10.2006
+- Improved Transfer log paging links.
+
+12.10.2006
+- Bugfix: Now LocalFileReadConverter and LocalFileWriteConverter can be inserted
+  to any position in converters list.
+
+11.10.2006
+- NEW CLASSES: Added LocalFileReadConverter and LocalFileWriteConverter classes
+  They can be used to input local data and capture data from different points in Pipe
+
+09.10.2006
+- Bugfix: IteratingXMLSource did not preserve the chopped elements' parent
+  elements' attributes, which caused invalid fragments to be output from
+  XML data using namespace definitions.
+
+29.09.2006
+- Bugfix: Pipe framework now properly detects exceptions that occur while
+  notifying the Source component of last data block being successfully
+  processed through the Pipe.
+- Bugfix: RemoteOrderSource component editor crashed if an invalid date
+  was entered in the Before/After date fields.
+- Bugfix: WorkspaceHQLSource and WorkspaceHQLOrderSource now abort Pipe
+  execution if the HQL query returns an empty result.
+
+08.09.2006
+- SyncroHttpStart now compares Pipe and database names for pipes separately
+  instead of comparing joined strings.
+
+07.09.2006
+- SyncroHttpStart now returns an error message if an exception is thrown
+  during processing the Pipe execution request.
+
+06.09.2006
+- Moved Persister closing from SyncroHttpStart to PipeExecutionThread.  
+- Added additional logging to SyncroHttpStart.
+- SyncroHttpStart now also checks database name when testing Pipe names for
+  equality.
+
+01.09.2006
+- Added additional logging and exception handling to PipeExecutionThread
+
+29.08.2006
+- Persister.deleteAllLogEntries() now uses a single transaction
+- Fixed: Transfer log caused exception due to incorrect casting
+
+28.08.2006
+- Modified Persister.deleteAllLogEntries() to use Hibernate DML statements 
+- Removed an unneeded instance variable from SyncroHttpStart
+
+21.08.2006
+- Bugfix: In HttpStart the last used sync mode was used instead of the default
+  one when no sync mode was specified in the request 
+- Column values in Pipe list can now be localized
+
+-------------------------------------------------------------------
+30.06.2006 OpenSyncro v2.0 build for public release
+           Build number: 20060630151204
+           Binary distribution archive: OpenSyncro-v2.0_install.zip
+           Source distribution archive: OpenSyncro-v2.0_source.zip
+-------------------------------------------------------------------
+ 
+29.06.2006
+- Pipes started from the user interface no longer write "Received Pipe execution request"
+  lines to the Transfer log. Logging the request receiving time is currently relevant
+  only to the remote invocations, because only they are put on the waiting queue if
+  the same Pipe is already executing.
+- Bugfix: Pressing the "Clear Transfer log" button did not reset the current page number.
+
+28.06.2006
+- Modifications to HTTPDestination:
+	- Added SOAP as an option to the dropdown menu + removed separate checkbox for SOAP messages.
+	- Added checkbox for enabling logging. Both response headers and response body are logged
+	- Updated to work with modified HTTPUtils
+- Modifications to HTTPUtils:
+	- Modified makeRequest methods to return a HTTPResponse object instead of a single string. 
+	- HTTP status other than 200 does not cause an exception to be thrown. 
+	  Instead possible error message is returned in the string array.
+- Modifications to HTTPSource:
+	- Updated to work with modified HTTPUtils
+- NEW CLASS: HTTPResponse for holding HTTP response information
+	
+27.06.2006
+- Pipe editor now displays also seconds of the start and end times of the last
+  Pipe execution
+- Fixed: Transfer log view's Messages column contents are now left aligned also on IE6
+
+22.06.2006
+- Bugfix: Deleted Pipes' log message lines were left in the database, which caused
+  an error message when trying to clear the Transfer log. Database upgrade dump
+  now deletes these orphan lines.
+- XSLT20Converter and XSLTConverter: ErrorListeners now set to Transformers also (previously 
+  these were set only to factories). Now when using XSLT 1.0 (Xalan), xsl:messages are 
+  output to transfer log.
+- Updated 3rd party JAR component: Apache Commons HttpClient 3.0.1
+- Added SOAP message sending ability to HTTPDestination/HTTPUtils
+- Fixed bug in HTTPUtils.splitParameters where too many request parameters were created.
+
+21.06.2006
+- Updated 3rd party JAR component: Saxon-B 8.7.3
+
+20.06.2006
+- Modifications to Pipe list:
+	- Shortened execution info labels
+	- Added seconds to Pipe start and end times (also in Transfer log)
+- Renamed SyncroHttpStart servlet parameter 'sync' to 'mode'; 
+
+16.06.2006
+- Modified Pipe class:
+	- Pipe execution info is set in a separate method
+	- New method for getting Pipe status message
+- Modified FTP compoments FTPSource & FTPDestination. It is now possible to set 
+  the charset encoding of the transferred file.
+
+13.06.2006
+- Modified ContainerEditor. Cloning is now generic (contrary to being specific to 
+  the Pipe class previously) and can be activated for classes that implement Cloneable.
+
+07.06.2006
+- Fixed: Execution status and user name were not displayed in Pipe list.
+
+06.06.2006
+- Improved error message texts for XSLTConverter and XSLT20Converter, implying that
+  the errors received from the XSLT processor may also be due to invalid input XML data
+  (in addition to the XSLT script itself).
+
+05.06.2006
+- Fixed: Cloning a Pipe with no source or destination components caused an exception
+- Pipe class startTime, endTime and duration fields are no longer strings
+- SyncroPipeList no longer uses a separate method to retrieve pipeId of a started Pipe
+- Modified database dump files
+- New class: HighlightingContainerEditor for highlighting Pipes in Pipe list.
+- Log entries in Transfer log now show the user who started the Pipe
+- New field to pipe.log.LogEntry - userName - for keeping track of the user who started the Pipe
+- Pipe execution dates and duration are no longer formatted in Pipe.transfer(). 
+  SyncroPipeList and SyncroEditPipe do that on their own now.
+ 
+01.06.2006
+- Additions to Pipe list:
+	- New columns: execution started, execution finished, execution duration,
+	  execution status, name of the user that started the Pipe.
+	- Running Pipes are highlighted
+	- Clone and Start buttons for each Pipe
+- Addition to Pipe editor:
+	- After Pipe execution status information is displayed
+
+30.05.2006
+- Fixed: After creating a new StringSource component if its parameters had not been saved
+  in Component Editor, StringSource returned a null value causing the Pipe execution to
+  prematurely finish at the beginning of the first iteration.
+
+25.05.2006
+- Fixed: Several modifications to asyncronous/syncronous remote Pipe execution
+	- New methods
+		- opensyncro.system.persister.isClosed() for determining if the persister has been closed
+	- Removed methods
+		- opensyncro.system.PipeExecutionThread.isExecuting()
+	- Modifications
+		- opensyncro.system.PipeExecutionThread
+			Now removes the Pipe of the finished queue from webapp context itself
+		- opensyncro.system.PipeExecutionRequest
+			Added comments
+		- opensyncro.system.PipeExecutionQueue
+			Methods accessing the database are now synchronized	
+		- opensyncro.servlets.SyncroStartup
+			Checks if Pipe has pending requests before starting an executor thread
+		- opensyncro.servlets.SyncroPipeExecutionQueue
+			Changed date format. Rearranged table columns
+		- opensyncro.servlets.SyncroHttpStart
+			Now keeps track of Pipes that have requests queued and the persisters their queue uses
+			New requests for Pipe execution use the same persister for verification as the Pipe queue 
+			(if there is an existing queue for this Pipe)
+
+22.05.2006
+- Fixed: Use numeric entity for apostrophe character in Utils.htmlentities() HTML escape
+  method since IE6 does not seem to decode the "&apos;" entity.
+
+19.05.2006
+- New feature: Asyncronous/syncronous remote Pipe execution
+	- New classes
+		Persistent class opensyncro.system.PipeExecutionRequest
+		opensyncro.system.PipeExecutionQueue
+		opensyncro.system.PipeExecutionThread
+	- New servlet
+		opensyncro.servlets.SyncroPipeExecutionQueue for displaying requests in queue
+	- New methods
+		- opensyncro.system.Persister
+			deleteAllPipeExecutionRequests(Long pipeId)
+			deletePipeExecutionRequest(Long id)	
+			getPipeExecutionRequests(Long pipeId)
+			save, update, delete methods fo PipeExecutionRequests
+		- opensyncro.system.Environment
+			getDatabaseInfo for returning database names and Pipe execution queue 
+				resume mode settings from properties file
+		- opensyncro.pipes.Pipe
+			transfer(TransferInfo,Date) for allowing execution request creation date to be
+			included in the log
+		- opensyncro.pipes.log.LogEntry
+			logMessage(String,Object,int,Date) for creating log messages with a given date	
+	- Modifications
+		- opensyncro.servlets.SyncroHttpStart
+			Accepts a new request parameter 'sync' which determines whether to simply add the request
+			  to the queue (sync=async) or wait for the transfers to finish (sync=sync)
+			All started Pipes and executing threads are added to servlet context
+		- opensycnro.servlets.SyncroStartup
+			During startup OpenSyncro now reads all database names from opensyncro.properties file and 
+			  executes (or deletes, based on the 'resumemode' setting) pipeExecutionRequests found in
+			  the database 
+		- smilehouse.tools.ui.web.MenuGenerator 
+			Changed last menu table cell width to 200
+		- opensyncro.menu
+			Added Pipe Execution Queue menuitem
+		- labels_en.properties
+			SyncroPipeExecutionQueue servlet labels
+		- updates to database files
+			New table 'SyncroPipeExecutionQueue'
+		- web.xml
+			Added SyncroPipeExecutionQueue servlet
+
+17.05.2006
+- Bugfix: RemoteProductDestination component editor no longer displays "null" in the protected
+  product groups list when the list is empty (unspecified)
+
+12.05.2006
+- Upgraded Hibernate from version 2.1.8 to version 3.1.3
+	- Updated mapping files 
+	- Updated import statements in smilehouse.util.HibernateConfiguration and
+	  smilehouse.opensyncro.system.Persister
+	- Added new jars used by Hibernate3 - asm.jar, asm-attrs.jar, antlr-2.7.6rc1.jar
+	- Updated jars - ehcache-1.1.jar, cglib-2.1.3.jar, hibernate3.jar
+
+11.05.2006
+- Transfer log verbosity level 'Dynamic' now removes debug messages when Pipe execution ends
+  with status 'Aborted'
+
+10.05.2006
+- Bugfix: adding a new entry to Transfer log would load to main memory all previous log entries
+
+08.05.2006
+- Email notification improvements:
+	- Replaced "Always send notification mail" with "Send notification email when Pipe aborts" option
+	- Added new notification level - "None". Causes no message to be sent regardless of log contents
+	- Added Transfer log and Notification level constants to MessageLogger
+	- Modified SyncroPipeSettings to use new MessageLogger verbosity constants
+	- Notification email now contains messages that are chosen based on Transfer log verbosity setting. 
+	  Notification level setting triggers mail sending.
+
+05.05.2006
+- HTTPDestination now includes an option for accepting self-signed certificates in HTTPS-connections.
+
+02.05.2006
+- Added "Always send notification mail" option to Pipe settings:
+	- New Pipe field emptyMailEnabled
+	- Modified Pipe mapping file
+	- New database dump file .sql - for adding emptyMailEnabled field to database
+	- Added ENABLE_EMPTY_MAIL checkbox to SyncroPipeSettings
+	- 1 label to labels_en file.
+
+20.04.2006
+- Improved HTTPSource and HTTPDestination components: You can now choose whether to use
+  HTTP or HTTPS.
+
+19.04.2006
+- Improved XSLT20Converter: xsl:message comments are now written to Transfer log.
+
+13.04.2006
+- Improved Pipe framework: Exceptions resulting from Pipe component loading are now written to
+  application log
+
+12.04.2006
+- Improved IteratingXMLFileSource: chop depth 0 now supported.
+
+10.04.2006
+- Improved RemotePriceListDestination: now sends OpenInterface address query only at the beginning
+  of an iteration session. Parameter validation is also relocated to session open() method.
+
+05.04.2006
+- Bugfix: Crash is avoided when parameters supplied to HTTPUtils.SplitParameters are not
+  name-value pairs.
+- Bugfix: Supplying an valid port number to HTTPSource or HTTPDestination now 
+  causes the Pipe to abort instead of falling back on a defaul port value.
+- Request parameter field in HTTPDestination is considered empty if it contains only whitespace.
+
+03.04.2006
+- Bugfix: Warning messages in Transfer log were deleted in dynamic logging mode if Pipe execution
+  did not fail with an error
+
+-------------------------------------------------------------------
+31.03.2006 OpenSyncro v1.3 build for public release
+           Build number: 20060331155705
+           Binary distribution archive: OpenSyncro-v1.3_install.zip
+           Source distribution archive: OpenSyncro-v1.3_source.zip
+-------------------------------------------------------------------
+
+27.03.2006
+- Created RemoteOrderDestination component for importing sales orders to a Workspace webshop
+- Bugfix: IteratingXMLFileSource did not recognize all XML NameChars
+
+22.03.2006
+- Bugfix: WorkspaceHQLSource and WorkspaceHQLOrderSource attempted to close OpenInterface iterator
+  session even if the iterator had already been closed by Workspace due to a connection timeout
+- Bugfix: WorkspaceHQLOrderSource sent an extra OpenInterface address query when updating order statuses
+- Bugfix: WorkspaceHQLSource and WorkspaceHQLOrderSource sent an extra OpenInterface iterate query after
+  all data had been retrieved (in "return all results at once" mode).
+- Bugfix: Transfer log view no longer crashes if a null value is found in the log entry's datestamp column
+
+21.03.2006
+- Created RemotePriceListDestination component for importing contract pricing data to Workspace webshop
+
+20.03.2006
+- Updated 3rd party JAR component: Saxon-B 8.7
+
+17.03.2006
+- Merged escapeFormValue() with htmlentities() method in Utils class as their implementations were
+  practically identical
+- Created WorkspaceHQLOrderSource component for exporting order data from Workspace using HQL and updating
+  the exported orders' handling and payment status.
+
+15.03.2006
+- RemoteOrderSource now updates exported order handling statuses in Workspace only if the Pipe execution
+  was completed successfully
+- Updated Workspace OpenInterface method stubs
+
+13.03.2006
+- Added message text and Exception parameters support to FailTransferException and AbortTransferException.
+  PipeComponentUtils' failTransfer() and abortTransfer() methods updated accordingly.
+
+10.03.2006
+- Changed Source component interface's (SourceIF) lastBlockStatus method to throw FailTransferException
+  and AbortTransferException instead of a generic Exception
+
+07.03.2006
+- Refactored RemoteOrderSource, RemoteCustomerDestination, RemoteProductDestination components to use
+  WorkspaceOIUtils' methods for connecting to Workspace OpenInterface. OpenInterfaceConnector class dropped.
+- Fixed: RemoteCustomerDestination didn't write RemoteException and OpenInterfaceException details to the
+  application log
+
+28.02.2006
+- Created IteratingXMLFileSource component for reading arbitrarily large XML files
+- Fixed: WorkspaceHQLResultConverter did not write XPath processing related exception messages to Transfer log
+- Fixed: WorkspaceOIUtils did not write OpenInterface endpoint address querying related exception messages to Transfer log
+- Added handling and logging of Java VirtualMachineErrors (e.g. OutOfMemoryError) to the Pipe framework
+
+17.02.2006
+- Fixed: Entries in Transfer log are now displayed in chronological order
+- Updated the Pipe settings section in the manual
+
+16.02.2006
+- Bugfix: Source and Converter components' sessions were not closed if a subsequent Converter or Destination
+  component failed to initialize.
+- Pipe class code refactoring: extracted methods for opening and closing Source/Converter/Destination
+  component's iteration sessions
+- Bugfix: WorkspaceHQLResultConverter wrote 'null' to the beginning of output data when input data didn't
+  start with an XML declaration line
+
+15.02.2006
+- Modified logging classes, mappings and database structure so that old logs needn't be deleted when 
+  updating from an older version
+- Modified Pipe class
+	- Created String constants to be used in mail sending process (time format, sender name, no entries message)
+	- Modified transfer method to require a HttpSession parameter in order to be able to access the labels file
+	- In case of an exception during sending the mail a log entry is now written
+	- Status codes and status code messages are now referenced from static variables in LogEntry
+	- Added try-catch-finally block to ensure persister.close() is called
+	- Multiple mail report recipients accepted
+
+13.02.2006
+- Fixed: WorkspaceHQLResultConverter no longer writes "null" HQL queries to Transfer log if the XPath
+  query returned an empty result
+- Pipe settings moved from Pipe Editor to a separate tab(Pipe Settings)
+	- Created new servlet SyncroPipeSettings
+	- Added new servlet to web.xml
+	- Modified opensyncro.menu file
+	- Modified labels_en.properties file
+- Added email alert option 
+	- Added mail host, recipient name fields and notification level pulldown to Pipe Settings
+	- Email sending added to Pipe class addLogEntry method
+	- Added transferlogNotification, mailHost, recipientAddress fields to Pipe class and Hibernate mapping
+	- Updated database creation and update files
+- Added dynamic logging option
+	- Added dynamic logging constant to MessageLogger
+	- Modified Pipe class to remove unrequired log entries when using dynamic logging and Pipe status OK
+	- Modified LogEntry class and Hibernate mapping file
+	- Created LogMessageEntry class and Hibernate mapping file
+	- Modified SyncroTransferLog to use LogMessageEntries
+	- Added LogMessageEntry to Persister class
+	- Added getLogEntries method that returns messages based on message type to Persister.java
+- Added info about Pipe settings tab to the manual 
+
+08.02.2006
+- Fixed: Encoding type of the demo database's Example Pipe 3 LocalFileDestination component parameters
+
+03.02.2006
+- ComponentLoader's Exception messages now indicate the componentID
+- Sort Pipe Editor's component select listings in alphabetical order
+
+26.01.2006
+- Added support for running multiple OpenSyncro instances/versions on the same application
+  server. If OpenSyncro webapp name is other than the default "opensyncro", a properties file
+  "os_<webappname>.properties" will be read instead of "opensyncro.properties".
+
+19.01.2006
+- Component Editor no longer opens in a pop-up window
+- Added a Back button from Component Editor to Pipe Editor
+- Converted Components' Edit links to buttons in Pipe Editor
+- User Management: moved Create button to the same row with OK and Cancel buttons
+
+16.01.2006
+- Changed the MySQL JDBC driver classname in opensyncro.properties example file to
+  com.mysql.jdbc.Driver
+
+11.01.2006
+- Added PUT method to HTTPUtils
+- HTTPDestination can now make PUT requests 
+
+10.01.2006
+- Fixed: ASCIItoXMLConverter's conversion script parser did not correctly skip comment and
+  empty lines
+
+06.01.2006 
+- Added Jakarta Commons Codec 1.3 and Jakarta Commons HttpClient
+  3.0 jar files for use in HTTPDestination and HTTPSource components
+- Added HTTPUtils class to be used by HTTPDestination and HTTPSource
+  components
+- Created HTTPDestination component for sending data in a HTTP request
+- Modified HTTPSource to use HTTPUtils
+
+-------------------------------------------------------------------
+30.12.2005 OpenSyncro v1.2 build for public release
+           Build number: 20051230115516
+           Binary distribution archive: OpenSyncro-v1.2_install.zip
+           Source distribution archive: OpenSyncro-v1.2_source.zip
+-------------------------------------------------------------------
+
+29.12.2005
+- Increased the maximum size of Transfer log message texts and Component attribute values in the database
+
+28.12.2005
+- Pipe framework now logs iteration session open/close calls for each component
+- Fixed: if a Pipe component threw an Exception while closing iteration session, subsequent components'
+  sessions were not closed
+
+27.12.2005
+- Added Component Reference documentation for IteratingFileSource, HTTPSource, StringSource, JDBCConverter
+  and JDBCDestination
+
+21.12.2005
+- Added: WorkspaceHQLSource and WorkspaceHQLConverter components
+- Component list now sorted by component type and ID
+
+01.12.2005
+- Various exception logging fixes: full stacktraces were not always written to the
+  application log
+
+11.11.2005
+- Added StringSource component
+
+09.11.2005
+- Added: JDBCConverter and JDBCDestination components
+- Fixed JDBCDestination to work with multiple statements. Removed xml-processing
+  capability from JDBCDestination. Improved logging in error situations.
+
+08.11.2005
+- Selection of encodings extended in filesystem components. The charset list now
+  contains most of the encodings with both encode and decode support in Java 1.5.
+- Added java source charset to build. Added fail to doComplain target. Added more
+ descriptions for jarComponent.
+  
+26.10.2005
+- Added: Days increment/decrement option to FTPSource component
+
+24.10.2005
+- Fixed: XSLT transformer initialization in XSLTConverter and XSLT20Converter
+  no longer modifies a system property javax.xml.transform.TransformerFactory
+- Instead of failing Pipe execution with an error, FTPSource now only aborts the transfer
+  if the specified file can not be retrieved (behavior similar to LocalFileSource and
+  TimestampFileSource components)
+
+20.10.2005
+- Added permissions needed by Hibernate and CGLIB needed to catalina.policy.
+
+19.10.2005
+- Added: CSVtoXMLConverter's skip column feature now works also in the "Prefix/basebase for
+  generating missing field names". These fields can be filtered from output by prefixing the
+  basename with '-' character.
+- Added new component HTTPSource for retrieving files from an HTTP server
+- Added: Method javaStyleUnescape to Utils.
+- Added new defaultcomponent IteratingFileSource.
+
+14.10.2005
+- Fixed: CSVtoXMLConverter no longer creates one empty XML record and field element out of
+  empty (0 byte) input data.
+
+12.10.2005
+- Added: "XML footer" feature to CSVtoXMLConverter; a user specified string may be appended after
+  the result XML table.
+- Updated Component Reference documentation for CSVtoXMLConverter; skip column and "XML footer"
+  feature descriptions added.
+  
+06.10.2005
+- Fixed: XSLTConverter and XSLT20Converter should now allow the XSLT scripts to read files from the
+  file system.
+
+30.09.2005
+- Fixed: ASCIItoXMLConverter now filters invalid XML characters from output, according to the XML 1.0
+  specification (http://www.w3.org/TR/REC-xml/#charsets)
+- ASCIItoXMLConverter now uses a short form for empty elements (<element/> instead of
+  <element></element>). Note: short form currently only works for leaf nodes.
+- Fixed: CSVtoXMLConverter now filters invalid XML characters from output, according to the XML 1.0
+  specification (http://www.w3.org/TR/REC-xml/#charsets)
+
+26.09.2005
+- Added: skip column feature to CSVtoXMLConverter. XML elements with a name beginning with
+  a '-' character will not be included in the output. Also names consisting of a single '-'
+  char are accepted.
+
+22.09.2005
+- Fixed: empty XML element names list caused CSVtoXMLConverter to fail with "Invalid XML element
+  name detected" error
+- Fixed: CSVtoXMLConverter did not test that the XML element name prefix parameter value is a
+  valid element name
+- Fixed: CSVtoXMLConverter did not fall back to defaults for XML root and record element name
+  parameters if the values were empty strings 
+
+------------------------------------------------------------------
+21.09.2005 OpenSyncro v1.1 build for public release
+          Build number: 20050921095346
+          Binary distribution archive: OpenSyncro-v1.1_install.zip
+          Source distribution archive: OpenSyncro-v1.1_source.zip
+------------------------------------------------------------------
+
+20.09.2005
+- MultiFileDestination now requires a non-empty directory parameter
+
+19.09.2005
+- Fixed: jarComponent target in build script could create external component classes with broken
+  references to OpenSyncro's GUI methods
+
+15.09.2005
+- Added new examples to demo database for Workspace product and customer data import
+
+14.09.2005
+- Fixed: User management now accepts new user logins consisting of alphanumeric characters only
+
+09.09.2005
+- Fixed: RemoteOrderSource did not report "access denied to OpenInterface" errors to Transfer log
+- Database name (db) can now be passed to the Login servlet as a URL parameter
+- Updated 3rd party JARs:
+	- Jakarta Commons Beanutils 1.7.0
+	- Jakarta Commons Collections 3.1
+	- Jakarta Commons Digester 1.7
+	- Jakarta Commons Lang 2.1
+	- Jakarta Commons Logging 1.0.4
+	- Jakarta Commons Net 1.4.0
+	- dom4j 1.6.1
+	- Apache ECS Element Construction Set 1.4.2
+	- Hibernate 2.1.8
+	- Jason Pell's MultipartRequest library 1.30rc1
+	- Sun Java Web Services Developer Pack (JWSDP) 1.6
+	- Sun JavaMail 1.3.3
+	- Sun Java Transaction API (JTA) 1.0.1B
+	- ODMG API 3.0
+	- Saxon-B 8.5.1
+
+07.09.2005
+- Fixed: CSVtoXMLConverter was outputting an extra linefeed character at the beginning of the
+  result XML even if the "XML header line" parameter value was empty
+
+02.09.2005
+- Updated: Xalan JARs to version 2.7.0. Seems to remove "Could not get charToByteConverterClass"
+  warning message when running a Pipe with both XSLT 1.0 and XSLT 2.0 converters.
+- Updated: Xerces2 JARs to version 2.7.1
+
+01.09.2005
+- Fixed: Console warning at startup about XSLT 2.0 processor being used to run a XSLT 1.0 transform
+
+29.08.2005
+- Fixed: New users no longer get their name set "null" by default
+- Fixed: User management crashed when attempted to create a new user with an already existing login name.
+  Now displays a Javascript alert box with an error message.
+- Updated: RemoteProductDestination now supports (only) Workspace 1.5+ OpenInterface
+
+23.08.2005
+- Updated JavaMail JAR to 1.3.2, renamed to javamail-1.3.2.jar
+
+11.08.2005
+- Added DirectorySource: a filesystem component for reading files from a local directory.
+  Filenames can be filtered with an optional regular expression parameter.
+
+08.08.2005
+- Added XSLT20Converter with SaxonB 8-5: XSLT 2.0 compatible XSL transform converter component.
+
+04.08.2005
+- Added MultiFileDestination: a filesystem component for writing each data block from iteration to
+  different file. Filenames based on name prefix and suffix parameters, with incrementing counter value
+  in between.
+
+14.07.2005
+- LocalFileDestination: removed the initialization check that a file can be written to, as it wasn't
+  functioning as expected in the case of creating a new file to an existing path.
+
+28.06.2005
+- Fixed: Errors opening iteration session in Pipe Components were not properly handled. If e.g.
+  Destination component failed initialization, Transfer Log would incorrectly report a Source error.
+- Transfer Log message "Pipe execution finished" is now written after closing iteration sessions at
+  Pipe Components
+- LocalFileDestination: added a check to the initialization that the file can be actually written
+  to (i.e. file path and privileges are correctly set up). Previously, entering an incorrect path
+  parameter would show as an IOException message in the Transfer Log.
+
+---------------------------------------------------
+27.06.2005 OpenSyncro v1.0 build for public release
+          Build number: 20050627163129
+          Distribution archive: OpenSyncro-v1.0.zip
+---------------------------------------------------
+
+27.06.2005
+- Fixed: Transfer Log would only show the first page as the page links' parameters were not handled correctly
+- Fixed: Pipe Components' iteration sessions when Pipe execution was aborted without error (AbortTransferException)

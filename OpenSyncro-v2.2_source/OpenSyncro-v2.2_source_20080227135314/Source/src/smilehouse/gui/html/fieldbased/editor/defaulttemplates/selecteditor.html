@@ -1,0 +1,26 @@
+<table class="tttable" cellspacing="1" border="0">
+<tr><td class="ttheader1"> 
+$description$
+</td></tr><tr><td class="ttrow1">
+
+<select name="$id$" class="$cssClass$">
+
+#block option
+  <option name="$id$" value="$value$"
+#block selected
+ selected
+#endblock
+> $description$ </option>
+#endblock
+
+</select>
+
+#block errors
+ <span class="error">
+#block error
+    $message$<br>
+#endblock
+ </span>
+#endblock
+
+</td></tr></table>

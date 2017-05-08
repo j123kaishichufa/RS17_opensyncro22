@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="smilehouse.opensyncro.pipes.log.LogMessageEntry" table="SyncroLogMessage" lazy="true">
+    <id name="id" column="id" type="long">
+      <generator class="native"/>
+    </id>
+    <many-to-one name="log" column="logEntry" class="smilehouse.opensyncro.pipes.log.LogEntry" not-null="true"/>
+    <property name="messageType" column="messageType" type="int"/>
+    <property name="index" column="messageIndex" type="int"/>
+    <property name="message" column="message" type="string"/>
+  </class>
+</hibernate-mapping>

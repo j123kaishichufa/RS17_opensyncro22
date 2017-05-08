@@ -1,0 +1,22 @@
+<table class="tttable" cellspacing="1" border="0">
+<tr><td class="ttheader1"> 
+$description$
+</td></tr><tr><td class="ttrow1">
+
+#block option
+  <input type="radio" name="$id$" value="$value$"
+#block selected
+ checked
+#endblock
+> $description$ <br>
+#endblock
+
+#block errors
+ <span class="error">
+#block error
+    $message$<br>
+#endblock
+ </span>
+#endblock
+
+</td></tr></table>

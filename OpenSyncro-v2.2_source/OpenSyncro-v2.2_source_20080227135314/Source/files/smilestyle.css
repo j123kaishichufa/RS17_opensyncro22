@@ -1,0 +1,154 @@
+
+.tab {  
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	color: #000000;
+	font-size: 11px;
+}
+.tab a { font-family: Verdana; font-size: 11px; color: #000000;  text-decoration: none; }
+.tab a:hover { font-family: font-size: 11px; Verdana; color: #1B6FC0 }
+a.tab { font-family: Verdana; font-size: 11px; color: #000000;  text-decoration: none; }
+a.tab:hover { font-family: font-size: 11px; Verdana; color: #1B6FC0 }
+
+.header {  
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+	color: #FFFFFF;
+	font-size: 11px;
+}
+
+.text {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.normal { 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+TD {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.header1 { 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+}
+	
+
+BODY {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+H1 {
+	font-size: 18px;
+}
+.smalltext { 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+A:LINK { 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+
+A:VISITED { 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+
+A:ACTIVE { 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #1B6FC0;
+}
+
+A:HOVER { 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #1B6FC0;
+}
+
+.folder {
+        font-size : 12px;	
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	line-height : 16px;
+}
+.highlight {
+        font-size : 12px;	
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	background-color : #99CC99 ;
+	line-height : 16px;
+}
+.notice {
+	font-size : 14px;
+	font-family : Verdana, Arial, helvetica, "sans serif";
+	font-weight : bold;
+	font-style : normal;
+	background-color : #99CC99;
+	padding: 3px;
+
+}
+.link {
+	color : blue;
+	text-decoration : underline;
+}
+
+.RedBorder {
+	border: 2px solid #FF0000;
+}
+.WhiteBorder {
+
+	border: 2px solid #FFFFFF;
+}
+form {  
+	margin-top: 0px; 
+	margin-right: 0px; 
+	margin-bottom: 0px; 
+	margin-left: 0px
+}
+SELECT	{ 
+	background-color: #FFFFFF; 
+	background: #FFFFFF; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px;
+}
+INPUT	{ 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px 
+}
+TEXTAREA { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px 
+}
+.error {
+        font-size : 10px;	
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : red;
+}
+
+.tttable{
+ background-color: #AAAAAA;
+}
+.ttheader1{
+ background-color: #AFC7DF;
+ font-weight: bold;
+}
+.ttheader2{
+ background-color: #DAE5F3;
+ font-weight: bold;
+}
+.ttrow1{
+ background-color: #FFFFFF;
+}
+.ttrow2{
+ background-color: #EEEEEE;
+}
+.ttrow3{
+ background-color: #B8FF79
+ }
+.dynamicComponent{
+ background-color: #66CC99;
+}

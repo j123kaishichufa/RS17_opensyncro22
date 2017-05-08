@@ -1,0 +1,50 @@
+BODY {
+	margin: 0px 0px 0px 0px;
+	background-color: #777777;
+}
+
+FONT { 
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+A:LINK { 
+	font-family: verdana, arial, sans serif;
+      TEXT-DECORATION: none;
+	color: #000000;
+}
+
+A:VISITED { 
+	font-family: verdana, arial, sans serif;
+	color: #000000;
+      TEXT-DECORATION: none;
+}
+
+A:ACTIVE { 
+	font-family: verdana, arial, sans serif;
+	color: #000000;
+      TEXT-DECORATION: none;
+}
+
+A:HOVER { 
+	font-family: verdana, arial, sans serif;
+	color: #000000;
+      TEXT-DECORATION: none;
+}
+
+
+.syncroTitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	color: #000000;
+}
+
+.syncroText {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	color: #000000;
+}
+	
+

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="smilehouse.opensyncro.pipes.Pipe" table="SyncroPipe">
+    <id name="id" column="id" type="long">
+      <generator class="native"/>
+    </id>
+    <property name="name" column="name" type="string"/>
+    <property name="loggingVerbosityLevel" column="loggingVerbosityLevel" type="int"/>
+    <property name="startPassword" column="startPassword" type="string"/>
+    <!--
+    <property name="rpcStartEnabled" type="boolean">
+		<column name="rpcStartEnabled" sql-type="tinyint" not-null="true"/>
+	</property>
+	-->
+    <property name="httpStartEnabled" type="boolean">
+		<column name="httpStartEnabled" sql-type="tinyint" not-null="true"/>
+	</property>
+    <property name="abortMailEnabled" type="boolean">
+		<column name="abortMailEnabled" sql-type="tinyint" not-null="true"/>
+	</property>
+    <property name="mailHost" column="mailHost" type="string"/>
+    <property name="recipientAddress" column="recipientAddress" type="string"/>
+    <property name="transferLogNotificationLevel" column="transferLogNotificationLevel" type="int"/>
+    <!-- Pipe component IDs -->
+    <property name="sourceID" column="sourceID" type="string"/>
+    <property name="destinationID" column="destinationID" type="string"/>
+
+    <property name="startTime" column="startTime" type="timestamp"/>
+    <property name="endTime" column="endTime" type="timestamp"/>
+    <property name="lastStatus" column="lastStatus" type="string"/>
+    <property name="duration" column="duration" type="long"/>
+    <property name="user" column="lastUser" type="string"/>
+
+    <!-- Pipe component datas -->
+    <many-to-one name="sourceData"      column="sourceData"      class="smilehouse.opensyncro.pipes.component.PipeComponentData" cascade="all"/>
+    <many-to-one name="destinationData" column="destinationData" class="smilehouse.opensyncro.pipes.component.PipeComponentData" cascade="all"/>
+
+
+    <list name="converterList" table="SyncroPipeConverterDatas" cascade="all-delete-orphan" inverse="false" lazy="true">
+      <key column="parentPipe" not-null="true"/>
+      <index column="position"/>
+      <one-to-many class="smilehouse.opensyncro.pipes.ConverterListItem"/>
+    </list>
+
+
+    <set name="log" cascade="all-delete-orphan" inverse="true" lazy="true" order-by="eventTime asc">
+      <key column="pipe"/>
+      <one-to-many class="smilehouse.opensyncro.pipes.log.LogEntry"/>
+    </set>
+  </class>
+</hibernate-mapping>

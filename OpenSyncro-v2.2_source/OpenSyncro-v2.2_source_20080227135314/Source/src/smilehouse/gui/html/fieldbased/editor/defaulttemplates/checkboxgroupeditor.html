@@ -1,0 +1,35 @@
+<table cellspacing="0" cellpadding="1" class="tttable" border="0">
+<tr><td>
+<table cellspacing="0" border="0" cellpadding="1" class="ttrow1">
+<tr><td class="ttheader1" colspan="$cols$"> 
+$description$
+</td></tr>
+
+<tr>
+
+#block option
+
+<td class="ttrow1">
+  <input type="checkbox" name="$id$" value="$value$" class="$cssClass$"
+#block selected
+ checked
+#endblock
+> <span class="$cssClass$"> $description$  </span> <br>
+</td>
+
+#block rowchange
+</tr><tr>
+#endblock
+
+#endblock
+
+#block errors
+ <span class="error">
+#block error
+    $message$<br>
+#endblock
+ </span>
+#endblock
+
+</tr></table>
+</td></tr></table>

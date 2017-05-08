@@ -1,0 +1,48 @@
+<table class="tttable" cellspacing="0" border="0" cellpadding="1"><tr><td>
+<table border="0" cellspacing="0" cellpadding="2" bgcolor="white">
+<tr><td class="ttheader1" colspan="$cols$">$description$</td></tr>
+#block header
+<tr>
+#block column
+<td class="ttheader2" >$description$</td>
+#endblock
+</tr>
+#endblock
+
+#block row
+<tr>
+#block column
+<td valign="top" class="$rowClass$">
+$field$
+
+#block button
+<input type="image" name="$id$" src="$src$" alt="$description$">
+#endblock
+#block deletebutton
+<input type="submit" name="$id$" value="$description$"
+#block deleteconfirm
+onClick="return confirm('$confirmMessage$')"
+#endblock
+>
+#endblock
+</td>
+#endblock
+</tr>
+#endblock
+
+#block add
+<tr><td colspan="$cols$" class="ttrow1" align="right">
+<input type="submit" name="$id$" value="$description$">
+</td></tr>
+#endblock
+
+#block errors
+ <span class="error">
+#block error
+    $message$<br>
+#endblock
+ </span>
+#endblock
+
+</table>
+</td></tr></table>

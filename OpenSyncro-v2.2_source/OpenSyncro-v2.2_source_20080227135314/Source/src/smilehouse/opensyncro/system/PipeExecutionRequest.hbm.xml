@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="smilehouse.opensyncro.system.PipeExecutionRequest" table="SyncroPipeExecutionQueue">
+        <id name="id" column="id" type="long">
+            <generator class="native"/>
+        </id>
+        <many-to-one name="pipe" column="pipe" class="smilehouse.opensyncro.pipes.Pipe"
+            not-null="true"/>
+        <property name="createdDate" column="requestDate" type="timestamp"/>
+        <property name="startedDate" column="startDate" type="timestamp"/>
+    </class>
+</hibernate-mapping>

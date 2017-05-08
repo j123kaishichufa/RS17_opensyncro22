@@ -1,0 +1,90 @@
+labelresource "smilehouse.opensyncro.system.labels"
+
+menu {
+	cardtable 0
+	notdropdown
+	item {
+		card 1
+		ctext "OpenSyncro"
+	}
+}
+
+
+menu {
+	cardtable 1
+	title "opensyncromenu_general"
+
+	xpos 2
+	width 150
+        
+	item {
+		card 1
+ 		text "opensyncromenu_users"
+		link "Users"
+	        zone "syncro_standalone"
+	}
+	item {
+		card 2
+		text "opensyncromenu_components"
+		link "Components"
+	}
+}
+
+menu {
+	cardtable 2
+	title "opensyncromenu_pipes"
+
+	xpos 100
+	width 150
+
+	item {
+		card 1
+		text "opensyncromenu_pipe_list"
+		link "PipeList"
+	}
+	item {
+		card 2
+		text "opensyncromenu_pipe_editor"
+		link "EditPipe"
+	}
+	item {
+		card 3
+		text "opensyncromenu_pipe_settings"
+		link "PipeSettings"
+	}
+}
+
+menu {
+	cardtable 3
+
+	xpos 200
+	width 150
+
+	title "opensyncromenu_log"
+	item {
+	       card 1
+	       text "opensyncromenu_log"
+	       link "TransferLog"
+        }
+}
+menu {
+	cardtable 4
+
+	xpos 300
+	width 200
+
+	title "opensyncromenu_queue"
+	item {
+	       card 1
+	       text "opensyncromenu_queue"
+	       link "PipeExecutionQueue"
+        }
+}
+menu {
+	cardtable 100
+	notdropdown
+        item {
+		card 1
+		text "opensyncromenu_component_editor"
+	}
+}

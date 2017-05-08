@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="smilehouse.opensyncro.pipes.log.LogEntry" table="SyncroLog" lazy="true">
+    <id name="id" column="id" type="long">
+      <generator class="native"/>
+    </id>
+    <many-to-one name="pipe" column="pipe" class="smilehouse.opensyncro.pipes.Pipe" not-null="true"/>
+
+    <property name="time" column="eventTime" type="timestamp"/>
+    <property name="statusCode" column="statusCode" type="int"/>
+    <property name="userName" column="userName" type="string"/>
+
+     <set name="messages" table="SyncroLogMessage" lazy="true" cascade="all-delete-orphan">
+      <key column="logEntry"/>
+      <one-to-many class="smilehouse.opensyncro.pipes.log.LogMessageEntry"/>
+    </set>
+  </class>
+
+</hibernate-mapping>
